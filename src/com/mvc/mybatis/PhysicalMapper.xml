@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Physical">
+<insert id="insert" parameterType="Physical">
+	insert into physical(physical_id, student_id, blood, weight)
+	values(seq_physical.nextval, #{student_id}, #{blood}, #{weight})
+</insert>
+</mapper>

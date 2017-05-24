@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Student">
+<insert id="insert" parameterType="Student">
+	insert into student(student_id, id, password, name)
+	values(seq_student.nextval, #{id}, #{password}, #{name})
+	<selectKey resultType="int" keyProperty="student_id" order="AFTER">
+		select seq_student.currval from dual
+	</selectKey>
+</insert>
+
+<resultMap type="Student" id="joinMap">
+<result column="student_id" property="student_id"/>
+<result column="id" property="id"/>
+<result column="password" property="password"/>
+<result column="name" property="name"/>
+<association property="physical" javaType="Physical" column="student_id" select="selectPhysical"/>
+</resultMap>
+<select id="selectJoin" resultMap="joinMap">
+	select * from student
+</select>
+<select id="selectPhysical" resultType="Physical">
+	select * from physical where student_id=#{student_id}
+</select>
+  
+</mapper>

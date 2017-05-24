@@ -1,0 +1,12 @@
+{
+	"controllerMapping":{
+		"/student/regist.do":"com.mvc.controller.RegistController",
+		"/student/list.do":"com.mvc.controller.ListController"
+	},
+	
+	"viewMapping":{
+		"/result/student/regist":"/student/list.do",
+		"/error/student/regist":"/student/error.jsp",
+		"/result/student/list":"/student/list.jsp"
+	}
+}
